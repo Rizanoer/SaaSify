@@ -252,7 +252,7 @@ export const faqItems = [
     id: '1',
     question: 'What is SaaSify?',
     answer:
-      'SaaSify is a production-ready Next.js 14 SaaS starter template that includes everything you need to launch your software product — authentication pages, dashboard, analytics, pricing, and a beautiful landing page. It\'s built with TypeScript, Tailwind CSS, and modern React patterns.',
+      'SaaSify is a production-ready Next.js 15 SaaS starter template that includes everything you need to launch your software product — authentication pages, dashboard, analytics, pricing, and a beautiful landing page. It\'s built with TypeScript, Tailwind CSS, and modern React patterns.',
   },
   {
     id: '2',

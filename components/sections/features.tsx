@@ -5,7 +5,7 @@ const features = [
     icon: Zap,
     title: 'Lightning Fast',
     description:
-      'Optimized for performance with Next.js 14 App Router, static generation, and edge rendering. Your users get instant page loads.',
+      'Optimized for performance with Next.js 15 App Router, static generation, and edge rendering. Your users get instant page loads.',
     color: 'text-amber-500',
     bg: 'bg-amber-50',
     border: 'border-amber-100',

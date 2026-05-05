@@ -1,10 +1,10 @@
 # SaaSify — Modern SaaS Starter Template
 
-A production-ready **Next.js 14** SaaS starter template with a beautiful landing page, authentication flows, analytics dashboard, and reusable UI components.
+A production-ready **Next.js 15** SaaS starter template with a beautiful landing page, authentication flows, analytics dashboard, and reusable UI components.
 
 ## ✨ Features
 
-- 🚀 **Next.js 14 App Router** — Server components, layouts, and streaming
+- 🚀 **Next.js 15 App Router** — Server components, layouts, and streaming
 - 🎨 **Tailwind CSS** — Utility-first styling with custom design tokens
 - 📊 **Analytics Dashboard** — Recharts integration with revenue & user growth charts
 - 🔐 **Auth Pages** — Beautiful login & register pages with form validation
@@ -20,7 +20,7 @@ A production-ready **Next.js 14** SaaS starter template with a beautiful landing
 
 | Tool | Purpose |
 |------|---------|
-| Next.js 14 | Framework (App Router) |
+| Next.js 15 | Framework (App Router) |
 | TypeScript 5 | Type safety |
 | Tailwind CSS 3 | Styling |
 | lucide-react | Icons |

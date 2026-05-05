@@ -32,7 +32,7 @@ export function Hero() {
               </h1>
               <p className="text-xl text-slate-500 leading-relaxed max-w-lg">
                 Stop rebuilding the same boilerplate. SaaSify gives you a
-                production-ready Next.js 14 template so you can ship your first
+                production-ready Next.js 15 template so you can ship your first
                 customer in days, not months.
               </p>
             </div>
