@@ -53,8 +53,8 @@ export default function SettingsPage() {
               <Input label={t('settings.general.companyName')} defaultValue="Acme Corp" />
               <Input label={t('settings.general.email')} type="email" defaultValue={userProfile.email} />
               <div className="flex flex-col gap-1">
-                <label className="text-sm font-medium text-slate-700 dark:text-slate-300">{t('settings.general.timezone')}</label>
-                <select defaultValue="UTC+0 Greenwich Mean Time" className="w-full rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 px-3 py-2 text-sm text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:focus:ring-indigo-400">
+                <label htmlFor="timezone" className="text-sm font-medium text-slate-700 dark:text-slate-300">{t('settings.general.timezone')}</label>
+                <select id="timezone" defaultValue="UTC+0 Greenwich Mean Time" className="w-full rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 px-3 py-2 text-sm text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:focus:ring-indigo-400">
                   <option>UTC-8 Pacific Time</option>
                   <option>UTC-5 Eastern Time</option>
                   <option>UTC+0 Greenwich Mean Time</option>
@@ -240,8 +240,8 @@ export default function SettingsPage() {
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="flex flex-col gap-1">
-                <label className="text-sm font-medium text-slate-700 dark:text-slate-300">{t('settings.language.selectLanguage')}</label>
-                <select className="w-full max-w-xs rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 px-3 py-2 text-sm text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:focus:ring-indigo-400">
+                <label htmlFor="language-select" className="text-sm font-medium text-slate-700 dark:text-slate-300">{t('settings.language.selectLanguage')}</label>
+                <select id="language-select" className="w-full max-w-xs rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 px-3 py-2 text-sm text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:focus:ring-indigo-400">
                   <option value="en">🇬🇧 English</option>
                   <option value="id">��🇩 Indonesia</option>
                 </select>
