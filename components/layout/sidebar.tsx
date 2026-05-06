@@ -11,6 +11,7 @@ import {
   ChevronLeft,
   ChevronRight,
   CreditCard,
+  Sparkles,
 } from 'lucide-react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
@@ -28,6 +29,7 @@ export function Sidebar({ className }: SidebarProps) {
 
   const navItems = [
     { label: t('sidebar.dashboard'), href: '/dashboard', icon: LayoutDashboard },
+    { label: t('sidebar.aiGenerator'), href: '/ai-generator', icon: Sparkles },
     { label: t('sidebar.analytics'), href: '/analytics', icon: BarChart3 },
     { label: t('sidebar.billing'), href: '/billing', icon: CreditCard },
     { label: t('sidebar.settings'), href: '/settings', icon: Settings },

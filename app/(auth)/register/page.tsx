@@ -2,11 +2,17 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 import { Zap, Eye, EyeOff } from 'lucide-react'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
+import { useToast } from '@/components/ui/toast'
+import { useUser } from '@/contexts/user-context'
 
 export default function RegisterPage() {
+  const router = useRouter()
+  const { toast } = useToast()
+  const { updateUser } = useUser()
   const [showPassword, setShowPassword] = useState(false)
   const [showConfirm, setShowConfirm] = useState(false)
   const [loading, setLoading] = useState(false)
@@ -38,7 +44,15 @@ export default function RegisterPage() {
     }
     setErrors({})
     setLoading(true)
-    setTimeout(() => setLoading(false), 2000)
+    setTimeout(() => {
+      updateUser({ name: form.name, email: form.email })
+      toast({
+        type: 'success',
+        title: 'Welcome! Your account has been created.',
+        description: `Hi ${form.name.split(' ')[0]}, let's get you started!`,
+      })
+      router.push('/dashboard')
+    }, 1500)
   }
 
   return (

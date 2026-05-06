@@ -2,11 +2,15 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 import { Zap, Eye, EyeOff } from 'lucide-react'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
+import { useToast } from '@/components/ui/toast'
 
 export default function LoginPage() {
+  const router = useRouter()
+  const { toast } = useToast()
   const [showPassword, setShowPassword] = useState(false)
   const [loading, setLoading] = useState(false)
   const [form, setForm] = useState({ email: '', password: '', remember: false })
@@ -14,7 +18,10 @@ export default function LoginPage() {
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
     setLoading(true)
-    setTimeout(() => setLoading(false), 2000)
+    setTimeout(() => {
+      toast({ type: 'success', title: 'Welcome back!', description: 'You have been signed in.' })
+      router.push('/dashboard')
+    }, 1500)
   }
 
   return (

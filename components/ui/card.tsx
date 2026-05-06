@@ -1,13 +1,14 @@
 import { cn } from '@/lib/utils'
-import { HTMLAttributes } from 'react'
+import { forwardRef, HTMLAttributes } from 'react'
 
 interface CardProps extends HTMLAttributes<HTMLDivElement> {
   className?: string
 }
 
-function Card({ className, children, ...props }: CardProps) {
+const Card = forwardRef<HTMLDivElement, CardProps>(function Card({ className, children, ...props }, ref) {
   return (
     <div
+      ref={ref}
       className={cn(
         'rounded-xl border border-slate-200 dark:border-slate-700/50 bg-white dark:bg-slate-800 shadow-sm',
         className
@@ -17,7 +18,7 @@ function Card({ className, children, ...props }: CardProps) {
       {children}
     </div>
   )
-}
+})
 
 function CardHeader({ className, children, ...props }: CardProps) {
   return (

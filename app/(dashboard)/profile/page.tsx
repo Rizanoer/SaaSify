@@ -8,13 +8,17 @@ import { Badge } from '@/components/ui/badge'
 import { Avatar } from '@/components/ui/avatar'
 import { userProfile } from '@/lib/data'
 import { Camera, Save } from 'lucide-react'
+import { useUser } from '@/contexts/user-context'
+import { useToast } from '@/components/ui/toast'
 
 export default function ProfilePage() {
+  const { user, updateOnboarding } = useUser()
+  const { toast } = useToast()
   const [savingInfo, setSavingInfo] = useState(false)
   const [savingPassword, setSavingPassword] = useState(false)
   const [profile, setProfile] = useState({
-    name: userProfile.name,
-    email: userProfile.email,
+    name: user.name || userProfile.name,
+    email: user.email || userProfile.email,
     bio: userProfile.bio,
     website: userProfile.website,
     company: userProfile.company,
@@ -22,12 +26,19 @@ export default function ProfilePage() {
 
   function handleSaveInfo() {
     setSavingInfo(true)
-    setTimeout(() => setSavingInfo(false), 1500)
+    setTimeout(() => {
+      setSavingInfo(false)
+      updateOnboarding({ profileCompleted: true })
+      toast({ type: 'success', title: 'Profile updated!', description: 'Your profile has been saved.' })
+    }, 1500)
   }
 
   function handleSavePassword() {
     setSavingPassword(true)
-    setTimeout(() => setSavingPassword(false), 1500)
+    setTimeout(() => {
+      setSavingPassword(false)
+      toast({ type: 'success', title: 'Password updated!' })
+    }, 1500)
   }
 
   return (
