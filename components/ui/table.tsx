@@ -16,7 +16,7 @@ function Table({ className, children, ...props }: HTMLAttributes<HTMLTableElemen
 
 function TableHeader({ className, children, ...props }: HTMLAttributes<HTMLTableSectionElement>) {
   return (
-    <thead className={cn('[&_tr]:border-b border-slate-200', className)} {...props}>
+    <thead className={cn('[&_tr]:border-b border-slate-200 dark:border-slate-700', className)} {...props}>
       {children}
     </thead>
   )
@@ -34,7 +34,7 @@ function TableRow({ className, children, ...props }: HTMLAttributes<HTMLTableRow
   return (
     <tr
       className={cn(
-        'border-b border-slate-100 transition-colors hover:bg-slate-50/50',
+        'border-b border-slate-100 dark:border-slate-700/50 transition-colors hover:bg-slate-50/50 dark:hover:bg-slate-800/50',
         className
       )}
       {...props}
@@ -48,7 +48,7 @@ function TableHead({ className, children, ...props }: ThHTMLAttributes<HTMLTable
   return (
     <th
       className={cn(
-        'h-12 px-4 text-left align-middle font-medium text-slate-500',
+        'h-12 px-4 text-left align-middle font-medium text-slate-500 dark:text-slate-400',
         '[&:has([role=checkbox])]:pr-0',
         className
       )}
@@ -62,7 +62,7 @@ function TableHead({ className, children, ...props }: ThHTMLAttributes<HTMLTable
 function TableCell({ className, children, ...props }: TdHTMLAttributes<HTMLTableCellElement>) {
   return (
     <td
-      className={cn('px-4 py-3 align-middle text-slate-700', className)}
+      className={cn('px-4 py-3 align-middle text-slate-700 dark:text-slate-300', className)}
       {...props}
     >
       {children}

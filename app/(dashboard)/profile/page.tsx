@@ -33,8 +33,8 @@ export default function ProfilePage() {
   return (
     <div className="space-y-6 animate-fade-in max-w-3xl">
       <div>
-        <h1 className="text-2xl font-bold text-slate-900">Profile</h1>
-        <p className="text-slate-500 mt-1">Manage your personal information</p>
+        <h1 className="text-2xl font-bold text-slate-900 dark:text-slate-100">Profile</h1>
+        <p className="text-slate-500 dark:text-slate-400 mt-1">Manage your personal information</p>
       </div>
 
       {/* Avatar card */}
@@ -48,11 +48,11 @@ export default function ProfilePage() {
               </button>
             </div>
             <div>
-              <p className="text-lg font-semibold text-slate-900">{userProfile.name}</p>
-              <p className="text-sm text-slate-500">{userProfile.email}</p>
+              <p className="text-lg font-semibold text-slate-900 dark:text-slate-100">{userProfile.name}</p>
+              <p className="text-sm text-slate-500 dark:text-slate-400">{userProfile.email}</p>
               <div className="flex items-center gap-2 mt-2">
                 <Badge variant="info">{userProfile.plan} Plan</Badge>
-                <span className="text-xs text-slate-400">Member since {userProfile.joinedAt}</span>
+                <span className="text-xs text-slate-400 dark:text-slate-500">Member since {userProfile.joinedAt}</span>
               </div>
             </div>
           </div>
@@ -92,12 +92,12 @@ export default function ProfilePage() {
             placeholder="https://yourwebsite.com"
           />
           <div className="flex flex-col gap-1">
-            <label className="text-sm font-medium text-slate-700">Bio</label>
+            <label className="text-sm font-medium text-slate-700 dark:text-slate-300">Bio</label>
             <textarea
               rows={3}
               value={profile.bio}
               onChange={(e) => setProfile({ ...profile, bio: e.target.value })}
-              className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 resize-none"
+              className="w-full rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 px-3 py-2 text-sm text-slate-900 dark:text-slate-100 placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:focus:ring-indigo-400 resize-none"
               placeholder="Tell us a little about yourself..."
             />
           </div>
