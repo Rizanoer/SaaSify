@@ -31,6 +31,7 @@ export const en = {
   },
   sidebar: {
     dashboard: 'Dashboard',
+    aiGenerator: 'AI Generator',
     analytics: 'Analytics',
     billing: 'Billing',
     settings: 'Settings',

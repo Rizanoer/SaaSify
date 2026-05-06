@@ -5,6 +5,8 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/com
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { useTranslation } from '@/hooks/useTranslation'
+import { useUser, type Plan, UNLIMITED_DISPLAY_VALUE } from '@/contexts/user-context'
+import { useToast } from '@/components/ui/toast'
 import {
   CreditCard,
   Download,
@@ -31,37 +33,61 @@ const billingHistory = [
 
 const plans = [
   {
-    name: 'Starter',
+    name: 'Free',
+    planKey: 'free' as Plan,
     price: '$0',
     icon: Zap,
     color: 'text-slate-500',
     bg: 'bg-slate-50 dark:bg-slate-900',
-    features: ['1 project', '5 team members', '10GB storage'],
-    isCurrent: false,
+    features: ['10 generations/month', '1 project', 'Basic support'],
   },
   {
     name: 'Pro',
+    planKey: 'pro' as Plan,
     price: '$29',
     icon: Crown,
     color: 'text-indigo-600',
     bg: 'bg-indigo-50 dark:bg-indigo-950/50',
-    features: ['Unlimited projects', '25 team members', '100GB storage', 'Priority support'],
-    isCurrent: true,
+    features: ['500 generations/month', 'Unlimited projects', '25 team members', 'Priority support'],
   },
   {
     name: 'Enterprise',
+    planKey: 'enterprise' as Plan,
     price: '$99',
     icon: Rocket,
     color: 'text-violet-600',
     bg: 'bg-violet-50 dark:bg-violet-950/50',
-    features: ['Unlimited everything', 'Custom integrations', 'SSO', 'SLA guarantee'],
-    isCurrent: false,
+    features: ['Unlimited generations', 'Custom integrations', 'SSO', 'SLA guarantee'],
   },
 ]
 
 export default function BillingPage() {
   const { t } = useTranslation()
+  const { user, updatePlan, updateOnboarding, usage } = useUser()
+  const { toast } = useToast()
   const [cancelModalOpen, setCancelModalOpen] = useState(false)
+  const [upgradingTo, setUpgradingTo] = useState<Plan | null>(null)
+
+  const limitDisplay = usage.generationsLimit >= UNLIMITED_DISPLAY_VALUE ? 'Unlimited' : usage.generationsLimit.toString()
+
+  function handlePlanChange(planKey: Plan) {
+    if (planKey === user.plan) return
+    setUpgradingTo(planKey)
+    setTimeout(() => {
+      updatePlan(planKey)
+      if (planKey !== 'free') {
+        updateOnboarding({ planUpgraded: true })
+        toast({
+          type: 'success',
+          title: `Plan upgraded to ${planKey.charAt(0).toUpperCase() + planKey.slice(1)}!`,
+          description: 'Your new plan is now active.',
+        })
+      } else {
+        toast({ type: 'info', title: 'Plan downgraded', description: 'Switched to Free plan.' })
+      }
+      setUpgradingTo(null)
+    }, 1200)
+  }
 
   return (
     <div className="space-y-8 animate-fade-in max-w-4xl">
@@ -76,22 +102,26 @@ export default function BillingPage() {
       <Card>
         <CardHeader>
           <CardTitle>{t('billing.currentPlan')}</CardTitle>
-          <CardDescription>Manage your subscription plan</CardDescription>
+          <CardDescription>
+            You are on the <span className="font-semibold capitalize">{user.plan}</span> plan &mdash; {usage.generationsUsed} of {limitDisplay} generations used
+          </CardDescription>
         </CardHeader>
         <CardContent>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {plans.map((plan) => {
               const Icon = plan.icon
+              const isCurrent = plan.planKey === user.plan
+              const isLoading = upgradingTo === plan.planKey
               return (
                 <div
                   key={plan.name}
                   className={`relative rounded-xl border-2 p-4 transition-all ${
-                    plan.isCurrent
+                    isCurrent
                       ? 'border-indigo-500 dark:border-indigo-400'
                       : 'border-slate-200 dark:border-slate-700 hover:border-slate-300 dark:hover:border-slate-600'
                   }`}
                 >
-                  {plan.isCurrent && (
+                  {isCurrent && (
                     <div className="absolute -top-3 left-1/2 -translate-x-1/2">
                       <span className="bg-indigo-600 text-white text-xs font-semibold px-3 py-1 rounded-full">
                         Current Plan
@@ -113,9 +143,13 @@ export default function BillingPage() {
                       </li>
                     ))}
                   </ul>
-                  {!plan.isCurrent && (
-                    <button className="mt-4 w-full px-3 py-2 text-sm font-medium rounded-lg border border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors">
-                      {plan.price === '$0' ? t('billing.downgrade') : t('billing.upgrade')}
+                  {!isCurrent && (
+                    <button
+                      onClick={() => handlePlanChange(plan.planKey)}
+                      disabled={isLoading || upgradingTo !== null}
+                      className="mt-4 w-full px-3 py-2 text-sm font-medium rounded-lg border border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                    >
+                      {isLoading ? 'Processing...' : plan.planKey === 'free' ? t('billing.downgrade') : t('billing.upgrade')}
                     </button>
                   )}
                 </div>

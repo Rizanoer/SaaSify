@@ -31,6 +31,7 @@ export const id = {
   },
   sidebar: {
     dashboard: 'Dasbor',
+    aiGenerator: 'Generator AI',
     analytics: 'Analitik',
     billing: 'Tagihan',
     settings: 'Pengaturan',
