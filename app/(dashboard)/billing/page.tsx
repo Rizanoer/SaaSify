@@ -5,7 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/com
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { useTranslation } from '@/hooks/useTranslation'
-import { useUser, type Plan } from '@/contexts/user-context'
+import { useUser, type Plan, UNLIMITED_DISPLAY_VALUE } from '@/contexts/user-context'
 import { useToast } from '@/components/ui/toast'
 import {
   CreditCard,
@@ -68,7 +68,7 @@ export default function BillingPage() {
   const [cancelModalOpen, setCancelModalOpen] = useState(false)
   const [upgradingTo, setUpgradingTo] = useState<Plan | null>(null)
 
-  const limitDisplay = usage.generationsLimit >= 999999 ? 'Unlimited' : usage.generationsLimit.toString()
+  const limitDisplay = usage.generationsLimit >= UNLIMITED_DISPLAY_VALUE ? 'Unlimited' : usage.generationsLimit.toString()
 
   function handlePlanChange(planKey: Plan) {
     if (planKey === user.plan) return

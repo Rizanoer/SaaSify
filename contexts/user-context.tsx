@@ -42,6 +42,9 @@ const PLAN_LIMITS: Record<Plan, number> = {
   enterprise: Infinity,
 }
 
+/** Sentinel value used when the limit is effectively unlimited (enterprise plan). */
+export const UNLIMITED_DISPLAY_VALUE = 999999
+
 const STORAGE_KEY_USER = 'saasify-user'
 const STORAGE_KEY_USAGE = 'saasify-usage'
 const STORAGE_KEY_GENERATIONS = 'saasify-generations'
@@ -115,7 +118,7 @@ export function UserProvider({ children }: { children: ReactNode }) {
         setUser(parsed)
         setUsage((prev) => ({
           ...prev,
-          generationsLimit: PLAN_LIMITS[parsed.plan] === Infinity ? 999999 : PLAN_LIMITS[parsed.plan],
+          generationsLimit: PLAN_LIMITS[parsed.plan] === Infinity ? UNLIMITED_DISPLAY_VALUE : PLAN_LIMITS[parsed.plan],
         }))
       }
 
@@ -156,7 +159,7 @@ export function UserProvider({ children }: { children: ReactNode }) {
   }, [])
 
   const updatePlan = useCallback((plan: Plan) => {
-    const limit = PLAN_LIMITS[plan] === Infinity ? 999999 : PLAN_LIMITS[plan]
+    const limit = PLAN_LIMITS[plan] === Infinity ? UNLIMITED_DISPLAY_VALUE : PLAN_LIMITS[plan]
     setUser((prev) => {
       const updated = { ...prev, plan }
       localStorage.setItem(STORAGE_KEY_USER, JSON.stringify(updated))

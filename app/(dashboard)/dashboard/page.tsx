@@ -33,7 +33,7 @@ import {
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import Link from 'next/link'
-import { useUser } from '@/contexts/user-context'
+import { useUser, UNLIMITED_DISPLAY_VALUE } from '@/contexts/user-context'
 import { useState } from 'react'
 
 const iconMap: Record<string, React.ElementType> = {
@@ -92,7 +92,7 @@ export default function DashboardPage() {
     usagePercent >= 90 ? 'bg-red-500' : usagePercent >= 70 ? 'bg-amber-500' : 'bg-emerald-500'
 
   const limitDisplay =
-    usage.generationsLimit >= 999999 ? 'Unlimited' : usage.generationsLimit.toString()
+    usage.generationsLimit >= UNLIMITED_DISPLAY_VALUE ? 'Unlimited' : usage.generationsLimit.toString()
 
   const PlanIcon = PLAN_ICONS[user.plan] ?? Zap
 
@@ -250,7 +250,7 @@ export default function DashboardPage() {
               </span>
             </div>
             <p className="text-2xl font-bold text-slate-900 dark:text-slate-100">
-              {usage.generationsLimit >= 999999
+              {usage.generationsLimit >= UNLIMITED_DISPLAY_VALUE
                 ? '∞'
                 : Math.max(0, usage.generationsLimit - usage.generationsUsed)}
             </p>

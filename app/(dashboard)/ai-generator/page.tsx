@@ -15,7 +15,7 @@ import {
 } from 'lucide-react'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { useToast } from '@/components/ui/toast'
-import { useUser } from '@/contexts/user-context'
+import { useUser, UNLIMITED_DISPLAY_VALUE } from '@/contexts/user-context'
 import { generateContent, promptTemplates, type GenerationType } from '@/lib/ai-generator'
 import { cn } from '@/lib/utils'
 import Link from 'next/link'
@@ -114,7 +114,7 @@ export default function AIGeneratorPage() {
       : 'bg-emerald-500'
 
   const limitDisplay =
-    usage.generationsLimit >= 999999
+    usage.generationsLimit >= UNLIMITED_DISPLAY_VALUE
       ? 'Unlimited'
       : usage.generationsLimit.toString()
 
@@ -365,13 +365,7 @@ export default function AIGeneratorPage() {
                 />
               </div>
               <p className="text-xs text-slate-500 dark:text-slate-400">
-                {user.plan === 'free'
-                  ? `Free plan: ${limitDisplay} generations/month`
-                  : user.plan === 'starter'
-                  ? `Starter plan: ${limitDisplay} generations/month`
-                  : user.plan === 'pro'
-                  ? `Pro plan: ${limitDisplay} generations/month`
-                  : 'Enterprise plan: Unlimited generations'}
+                <span className="capitalize">{user.plan}</span> plan: {limitDisplay} generations/month
               </p>
               {user.plan !== 'enterprise' && user.plan !== 'pro' && (
                 <Link
@@ -466,8 +460,8 @@ export default function AIGeneratorPage() {
             </p>
             <div className="grid grid-cols-2 gap-3 mb-4">
               {[
-                { name: 'Starter', limit: '100/mo', price: '$9' },
                 { name: 'Pro', limit: '500/mo', price: '$29', highlight: true },
+                { name: 'Enterprise', limit: 'Unlimited', price: '$99', highlight: false },
               ].map((plan) => (
                 <div
                   key={plan.name}
