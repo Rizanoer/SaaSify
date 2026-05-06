@@ -44,19 +44,19 @@ function Modal({ isOpen, onClose, title, children, className, size = 'md' }: Mod
       {/* Dialog */}
       <div
         className={cn(
-          'relative w-full bg-white rounded-2xl shadow-2xl animate-slide-up',
-          'border border-slate-200',
+          'relative w-full bg-white dark:bg-slate-800 rounded-2xl shadow-2xl animate-slide-up',
+          'border border-slate-200 dark:border-slate-700',
           sizeClasses[size],
           className
         )}
       >
         {/* Header */}
         {title && (
-          <div className="flex items-center justify-between px-6 py-4 border-b border-slate-200">
-            <h2 className="text-lg font-semibold text-slate-900">{title}</h2>
+          <div className="flex items-center justify-between px-6 py-4 border-b border-slate-200 dark:border-slate-700">
+            <h2 className="text-lg font-semibold text-slate-900 dark:text-slate-100">{title}</h2>
             <button
               onClick={onClose}
-              className="text-slate-400 hover:text-slate-600 transition-colors"
+              className="text-slate-400 dark:text-slate-500 hover:text-slate-600 dark:hover:text-slate-300 transition-colors"
               aria-label="Close modal"
             >
               <X size={20} />
@@ -66,7 +66,7 @@ function Modal({ isOpen, onClose, title, children, className, size = 'md' }: Mod
         {!title && (
           <button
             onClick={onClose}
-            className="absolute top-4 right-4 text-slate-400 hover:text-slate-600 transition-colors"
+            className="absolute top-4 right-4 text-slate-400 dark:text-slate-500 hover:text-slate-600 dark:hover:text-slate-300 transition-colors"
             aria-label="Close modal"
           >
             <X size={20} />

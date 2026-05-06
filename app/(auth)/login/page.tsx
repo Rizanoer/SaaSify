@@ -18,7 +18,7 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-indigo-50/30 to-violet-50/30 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-indigo-50/30 to-violet-50/30 dark:from-slate-950 dark:via-indigo-950/30 dark:to-violet-950/30 flex items-center justify-center p-4">
       <div className="w-full max-w-md">
         {/* Logo */}
         <div className="text-center mb-8">
@@ -33,10 +33,10 @@ export default function LoginPage() {
         </div>
 
         {/* Card */}
-        <div className="bg-white rounded-2xl border border-slate-200 shadow-xl p-8">
+        <div className="bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-xl p-8">
           <div className="mb-6">
-            <h1 className="text-2xl font-bold text-slate-900">Welcome back</h1>
-            <p className="text-slate-500 mt-1">Sign in to your account</p>
+            <h1 className="text-2xl font-bold text-slate-900 dark:text-slate-100">Welcome back</h1>
+            <p className="text-slate-500 dark:text-slate-400 mt-1">Sign in to your account</p>
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-5">
@@ -75,9 +75,9 @@ export default function LoginPage() {
                   type="checkbox"
                   checked={form.remember}
                   onChange={(e) => setForm({ ...form, remember: e.target.checked })}
-                  className="w-4 h-4 rounded border-slate-300 text-indigo-600 focus:ring-indigo-500"
+                  className="w-4 h-4 rounded border-slate-300 dark:border-slate-600 text-indigo-600 focus:ring-indigo-500"
                 />
-                <span className="text-sm text-slate-600">Remember me</span>
+                <span className="text-sm text-slate-600 dark:text-slate-400">Remember me</span>
               </label>
               <Link
                 href="#"
@@ -98,7 +98,7 @@ export default function LoginPage() {
             </Button>
           </form>
 
-          <p className="text-center text-sm text-slate-500 mt-6">
+          <p className="text-center text-sm text-slate-500 dark:text-slate-400 mt-6">
             Don&apos;t have an account?{' '}
             <Link
               href="/register"

@@ -19,26 +19,29 @@ import {
   Legend,
 } from 'recharts'
 import { cn } from '@/lib/utils'
+import { useTranslation } from '@/hooks/useTranslation'
 
 const COLORS = ['#6366f1', '#8b5cf6', '#a78bfa', '#c4b5fd']
 
 export default function AnalyticsPage() {
+  const { t } = useTranslation()
+
   return (
     <div className="space-y-8 animate-fade-in">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-slate-900">Analytics</h1>
-          <p className="text-slate-500 mt-1">Track your key metrics and performance</p>
+          <h1 className="text-2xl font-bold text-slate-900 dark:text-slate-100">{t('analytics.title')}</h1>
+          <p className="text-slate-500 dark:text-slate-400 mt-1">{t('analytics.subtitle')}</p>
         </div>
         <div className="flex items-center gap-3">
-          <button className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg border border-slate-300 text-slate-700 hover:bg-slate-50 transition-colors">
+          <button className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg border border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
             <Calendar size={16} />
-            Last 30 days
+            {t('analytics.last30days')}
           </button>
           <button className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg bg-indigo-600 text-white hover:bg-indigo-700 transition-colors shadow-sm">
             <Download size={16} />
-            Export
+            {t('analytics.export')}
           </button>
         </div>
       </div>
@@ -50,12 +53,12 @@ export default function AnalyticsPage() {
           return (
             <Card key={kpi.title} className="hover:shadow-md transition-shadow">
               <CardContent className="p-6">
-                <p className="text-sm text-slate-500 mb-2">{kpi.title}</p>
-                <p className="text-2xl font-bold text-slate-900">{kpi.value}</p>
+                <p className="text-sm text-slate-500 dark:text-slate-400 mb-2">{kpi.title}</p>
+                <p className="text-2xl font-bold text-slate-900 dark:text-slate-100">{kpi.value}</p>
                 <span
                   className={cn(
                     'inline-flex items-center gap-1 text-xs font-medium mt-2',
-                    isUp ? 'text-emerald-600' : 'text-red-600'
+                    isUp ? 'text-emerald-600 dark:text-emerald-400' : 'text-red-600 dark:text-red-400'
                   )}
                 >
                   {isUp ? <TrendingUp size={12} /> : <TrendingDown size={12} />}
@@ -71,7 +74,7 @@ export default function AnalyticsPage() {
         {/* Monthly revenue bar chart */}
         <Card>
           <CardHeader>
-            <CardTitle>Monthly Revenue</CardTitle>
+            <CardTitle>{t('analytics.monthlyRevenue')}</CardTitle>
           </CardHeader>
           <CardContent>
             <ResponsiveContainer width="100%" height={240}>
@@ -92,7 +95,7 @@ export default function AnalyticsPage() {
         {/* User growth line chart */}
         <Card>
           <CardHeader>
-            <CardTitle>User Growth</CardTitle>
+            <CardTitle>{t('analytics.userGrowth')}</CardTitle>
           </CardHeader>
           <CardContent>
             <ResponsiveContainer width="100%" height={240}>
@@ -122,7 +125,7 @@ export default function AnalyticsPage() {
         {/* Traffic sources pie */}
         <Card>
           <CardHeader>
-            <CardTitle>Traffic Sources</CardTitle>
+            <CardTitle>{t('analytics.trafficSources')}</CardTitle>
           </CardHeader>
           <CardContent>
             <ResponsiveContainer width="100%" height={220}>
@@ -153,7 +156,7 @@ export default function AnalyticsPage() {
         {/* Page views */}
         <Card className="lg:col-span-2">
           <CardHeader>
-            <CardTitle>Page Views (This Week)</CardTitle>
+            <CardTitle>{t('analytics.pageViews')}</CardTitle>
           </CardHeader>
           <CardContent>
             <ResponsiveContainer width="100%" height={220}>

@@ -42,7 +42,7 @@ export default function RegisterPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-indigo-50/30 to-violet-50/30 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-indigo-50/30 to-violet-50/30 dark:from-slate-950 dark:via-indigo-950/30 dark:to-violet-950/30 flex items-center justify-center p-4">
       <div className="w-full max-w-md">
         {/* Logo */}
         <div className="text-center mb-8">
@@ -57,10 +57,10 @@ export default function RegisterPage() {
         </div>
 
         {/* Card */}
-        <div className="bg-white rounded-2xl border border-slate-200 shadow-xl p-8">
+        <div className="bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-xl p-8">
           <div className="mb-6">
-            <h1 className="text-2xl font-bold text-slate-900">Create your account</h1>
-            <p className="text-slate-500 mt-1">Start your 14-day free trial</p>
+            <h1 className="text-2xl font-bold text-slate-900 dark:text-slate-100">Create your account</h1>
+            <p className="text-slate-500 dark:text-slate-400 mt-1">Start your 14-day free trial</p>
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-5">
@@ -132,9 +132,9 @@ export default function RegisterPage() {
                   type="checkbox"
                   checked={form.terms}
                   onChange={(e) => setForm({ ...form, terms: e.target.checked })}
-                  className="mt-0.5 w-4 h-4 rounded border-slate-300 text-indigo-600 focus:ring-indigo-500"
+                  className="mt-0.5 w-4 h-4 rounded border-slate-300 dark:border-slate-600 text-indigo-600 focus:ring-indigo-500"
                 />
-                <span className="text-sm text-slate-600">
+                <span className="text-sm text-slate-600 dark:text-slate-400">
                   I agree to the{' '}
                   <Link href="#" className="text-indigo-600 hover:text-indigo-700 font-medium">
                     Terms of Service
@@ -159,7 +159,7 @@ export default function RegisterPage() {
             </Button>
           </form>
 
-          <p className="text-center text-sm text-slate-500 mt-6">
+          <p className="text-center text-sm text-slate-500 dark:text-slate-400 mt-6">
             Already have an account?{' '}
             <Link
               href="/login"
